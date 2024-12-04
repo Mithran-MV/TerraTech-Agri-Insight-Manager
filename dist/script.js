@@ -110,6 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
         humidityChart.update();
     }
 
+
+    
     // Dropdown logic for crop selection
     const cropSelect = document.getElementById("cropSelect");
     cropSelect.addEventListener("change", function () {
@@ -119,9 +121,42 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Initial Load
+
     updateGraph("rice");
     updateSuggestions("rice");
 
+    const historicData = [
+        // Add 10 days of data here from your dataset
+        {"date": "2024-11-26", "N": 90, "P": 42, "K": 43, "temperature": 20.88, "humidity": 82.00, "ph": 6.50, "rainfall": 202.94, "crop": "rice"},
+        {"date": "2024-11-27", "N": 85, "P": 58, "K": 41, "temperature": 21.77, "humidity": 80.32, "ph": 7.04, "rainfall": 226.66, "crop": "rice"},
+        {"date": "2024-11-28", "N": 60, "P": 55, "K": 44, "temperature": 23.00, "humidity": 82.32, "ph": 7.84, "rainfall": 263.96, "crop": "rice"},
+        {"date": "2024-11-29", "N": 74, "P": 35, "K": 40, "temperature": 26.49, "humidity": 80.16, "ph": 6.98, "rainfall": 242.86, "crop": "rice"},
+        {"date": "2024-11-30", "N": 78, "P": 42, "K": 42, "temperature": 20.13, "humidity": 81.60, "ph": 7.63, "rainfall": 262.72, "crop": "rice"},
+        {"date": "2024-12-01", "N": 82, "P": 50, "K": 45, "temperature": 22.75, "humidity": 79.40, "ph": 6.91, "rainfall": 200.11, "crop": "rice"},
+        {"date": "2024-12-02", "N": 88, "P": 47, "K": 43, "temperature": 24.11, "humidity": 77.82, "ph": 7.10, "rainfall": 210.22, "crop": "rice"},
+        {"date": "2024-12-03", "N": 65, "P": 44, "K": 41, "temperature": 25.50, "humidity": 76.50, "ph": 7.20, "rainfall": 220.00, "crop": "rice"},
+        {"date": "2024-12-04", "N": 80, "P": 49, "K": 42, "temperature": 26.00, "humidity": 75.00, "ph": 6.80, "rainfall": 230.00, "crop": "rice"},
+        {"date": "2024-12-05", "N": 84, "P": 50, "K": 40, "temperature": 27.00, "humidity": 74.00, "ph": 6.70, "rainfall": 240.00, "crop": "rice"}
+      ];
+    
+      const tableBody = document.querySelector("#historicTable tbody");
+    
+      historicData.forEach(row => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row.date}</td>
+          <td>${row.N}</td>
+          <td>${row.P}</td>
+          <td>${row.K}</td>
+          <td>${row.temperature}</td>
+          <td>${row.humidity}</td>
+          <td>${row.ph}</td>
+          <td>${row.rainfall}</td>
+          <td>${row.crop}</td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    
     // Tab Switching Logic
     const tabs = document.querySelectorAll(".tab");
     const sections = document.querySelectorAll(".section");
