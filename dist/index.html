@@ -1,81 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Agriculture Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-toast/1.3.1/vanilla-toast.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vanilla-toast/1.3.1/vanilla-toast.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeraTech Agri Insight Manager</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>🌾 Smart Agriculture Dashboard</h1>
-    <nav>
-      <button id="overview-tab" class="active">Overview</button>
-      <button id="historical-data-tab">Historical Data</button>
-      <button id="settings-tab">Settings</button>
-    </nav>
-  </header>
-  <main>
-    <!-- Overview Section -->
-    <section id="overview" class="tab-section active">
-      <div class="card-grid">
-        <div class="data-card">
-          <h3>Soil Parameters</h3>
-          <p><strong>NPK Levels:</strong> <span id="npk-levels">Loading...</span></p>
-          <p><strong>Moisture:</strong> <span id="moisture">Loading...</span></p>
-          <p><strong>pH:</strong> <span id="ph">Loading...</span></p>
-        </div>
-        <div class="data-card">
-          <h3>Water Quality</h3>
-          <p><strong>EC:</strong> <span id="ec">Loading...</span></p>
-          <p><strong>TDS:</strong> <span id="tds">Loading...</span></p>
-          <p><strong>Turbidity:</strong> <span id="turbidity">Loading...</span></p>
-        </div>
-        <div class="data-card">
-          <h3>System Status</h3>
-          <p><strong>Pump:</strong> <span id="pump-status">Loading...</span></p>
-          <p><strong>Valve:</strong> <span id="valve-status">Loading...</span></p>
-        </div>
-      </div>
-      <div class="chart-container">
-        <h2>Real-Time Data Visualization</h2>
-        <canvas id="realTimeGraph"></canvas>
-      </div>
-    </section>
+    <div class="main-header">
+        <h1>🚜 TeraTech Agri Insight Manager 🌾📊</h1>
+    </div>
 
-    <!-- Historical Data Section -->
-    <section id="historical-data" class="tab-section">
-      <h2>Historical Data</h2>
-      <div class="chart-container">
-        <canvas id="historicalSoilGraph"></canvas>
-      </div>
-      <div class="chart-container">
-        <canvas id="historicalWaterGraph"></canvas>
-      </div>
-    </section>
+    <div class="header">
+        <h2>🌾 Smart Agriculture Dashboard 🌞</h2>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" data-target="overview">Overview</button>
+        <button class="tab" data-target="settings">Settings</button>
+    </div>
+
+    <!-- Overview Section -->
+    <div id="overview" class="section active">
+        <div class="container">
+            <div class="card">
+                <h3>Soil Parameters</h3>
+                <p><strong>NPK Levels:</strong> Loading...</p>
+                <p><strong>Moisture:</strong> Loading...</p>
+                <p><strong>pH:</strong> Loading...</p>
+            </div>
+            <div class="card">
+                <h3>Water Quality</h3>
+                <p><strong>EC:</strong> Loading...</p>
+                <p><strong>TDS:</strong> Loading...</p>
+                <p><strong>Turbidity:</strong> Loading...</p>
+            </div>
+            <div class="card">
+                <h3>System Status</h3>
+                <p><strong>Pump:</strong> Loading...</p>
+                <p><strong>Valve:</strong> Loading...</p>
+            </div>
+        </div>
+
+        <div class="graph-container">
+            <h3>Soil NPK Levels</h3>
+            <canvas id="npkGraph"></canvas>
+        </div>
+        <div class="graph-container">
+            <h3>Water Requirements</h3>
+            <canvas id="waterGraph"></canvas>
+        </div>
+        <div class="graph-container">
+            <h3>Temperature Levels</h3>
+            <canvas id="temperatureGraph"></canvas>
+        </div>
+        <div class="graph-container">
+            <h3>Humidity Levels</h3>
+            <canvas id="humidityGraph"></canvas>
+        </div>
+
+        <div class="dropdown">
+            <label for="cropSelect">Select Crop:</label>
+            <select id="cropSelect">
+                <option value="rice">Rice</option>
+                <option value="wheat">Wheat</option>
+                <option value="maize">Maize</option>
+            </select>
+        </div>
+
+        <div class="suggestions-container">
+            <h3>Suggestions</h3>
+            <ul id="suggestionList"></ul>
+        </div>
+    </div>
 
     <!-- Settings Section -->
-    <section id="settings" class="tab-section">
-      <h2>System Settings</h2>
-      <form id="settings-form">
-        <label for="threshold-moisture">Moisture Threshold:</label>
-        <input type="number" id="threshold-moisture" placeholder="Enter value in %">
-        <label for="alert-preference">Alert Preferences:</label>
-        <select id="alert-preference">
-          <option value="email">Email</option>
-          <option value="sms">SMS</option>
-          <option value="both">Both</option>
-        </select>
-        <button type="button" id="save-settings">Save Settings</button>
-      </form>
-    </section>
-  </main>
-  <footer>
-    <p>© 2024 Smart Agriculture Solutions | Powered by AI & IoT</p>
-  </footer>
-  <script src="script.js"></script>
+    <div id="settings" class="section">
+        <div class="settings-container">
+            <h2>Settings</h2>
+            <div class="settings-input">
+                <label for="moistureThreshold">Moisture Threshold (%):</label>
+                <input type="number" id="moistureThreshold" placeholder="Enter value">
+            </div>
+            <div class="settings-input">
+                <label for="alertPreferences">Alert Preferences:</label>
+                <select id="alertPreferences">
+                    <option value="email">Email</option>
+                    <option value="sms">SMS</option>
+                    <option value="both">Both</option>
+                </select>
+            </div>
+            <button id="saveSettings">Save Settings</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
