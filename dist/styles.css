@@ -91,6 +91,30 @@ body {
     margin-bottom: 1rem;
 }
 
+.tabcontent {
+    display: none;
+  }
+  
+  .tabcontent.active {
+    display: block;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th, table td {
+    border: 1px solid #596aff;
+    padding: 8px;
+  }
+  
+  table th {
+    background-color: #1f4068;
+    text-align: center;
+  }
+  
 /* Graph Container */
 .graph-container {
     background: #b4d6ff;
